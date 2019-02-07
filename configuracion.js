@@ -3,7 +3,6 @@ var user = require('./models/users');
 
 function configuracionInicial() {
 
-     // Se crea el usuario adeministrador
     User = new user()
     user.find({}, (err, usuarios) => {
         fecha = new Date()

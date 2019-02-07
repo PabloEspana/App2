@@ -18,6 +18,22 @@ router.get('/', ensureAuthenticated, (req, res) => {
     })
 })
 
+router.get('/demo', (req, res) => {
+    prueba.find({}, (err, datos) => { // Sentencia para consultar
+        if (err) { // Si hay error
+            console.log(err)
+        } else {
+            if (!datos) { // Si no se encientran estudiantes se muestra un mensaje en consola
+                console.log("No hay datos")
+            } else {
+                // Si encuentra alumnos los envía a las vistas html para mostrarlos en tablas
+                res.send(datos)
+            }
+        }
+    })
+})
+
+
 router.get('/login',  (req, res) => {
     res.render("login")  // Envvìa la pàgina de login
 })
