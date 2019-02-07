@@ -1,6 +1,8 @@
 express = require('express'); // Nos sirve para crear mètodos de registro y consulta
 router = express.Router();  // Creamos un router
 user = require('../models/users')
+prueba = require('../models/prueba')
+
 
 // Envìa los estudiantes registrados para que el administrador los vea
 router.get('/', ensureAuthenticated, (req, res) => {
