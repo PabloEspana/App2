@@ -1,0 +1,23 @@
+html{
+font-size: 18px;
+}
+
+
+
+.navbar {
+    background-color:#00C853; 
+}
+    /*background-color: rgba(0, 0, 0, 0.2); }   Color transparente*/ 
+    .items{
+        color:#fff;
+
+    }
+  
+  .top-nav-collapse {
+    background-color: #00C853; }
+  
+  /* Adding color to the Navbar on mobile */
+  @media only screen and (max-width: 768px) {
+    .navbar {
+      background-color: #00C853; } }
+  

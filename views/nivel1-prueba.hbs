@@ -1,0 +1,101 @@
+<script>
+  function aprobado(){
+    //window.location = '/' 
+    localStorage.setItem('nivel1', 'aprobado');
+  }
+</script>
+
+<div class="row">
+       <div class="col-3" id="sidebar">
+          <div class="list-group">
+            <a href="#" class="list-group-item active">Módulos</a>
+            <a href="/users/deficit-de-atencion" class="list-group-item">Introducción</a>
+            <a href="/users/deficit-de-atencion/modulo1" class="list-group-item">Módulo 1</a>
+            <a href="/users/deficit-de-atencion/modulo2" class="list-group-item">Módulo 2</a>
+            <a href="/users/deficit-de-atencion/modulo3" class="list-group-item">Módulo 3</a>
+            <a href="/users/deficit-de-atencion/modulo4" class="list-group-item">Módulo 4</a>
+            <a href="/users/deficit-de-atencion/prueba-final" class="list-group-item">Prueba Final</a>
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+        <div class="col-9">
+          
+
+
+      <h3>Prueba final de nivel déficit de atención</h3>
+
+        <p>Las siguientes preguntas son similares a las desarrolladas en el test inicial, 
+          por ende los resultados servirán para evaluar el progreso de aprendizaje del niño </p>
+          <br>
+<form class="text-center" method="POST" action="/users/nivel1-prueba/?id={{user.id}}" onsubmit = 'return  validar()'>
+
+
+    <label for="">1. ¿Cúal de las siguientes figuras se repite?:</label><br>
+    <img src="/img/repiten.jpg" height="200px" alt=""><br><br>
+    <fieldset id="group1" name="respuesta1">
+    <input type="radio" name="group1" value="a"> La figura A se repite<br>
+    <input type="radio" name="group1" value="b"> La figura B se repite<br>
+    <input type="radio" name="group1" value="c" > La figura C se repite<br>
+    <input type="radio" name="group1" value="d" > La figura D se repite<br>
+    <input type="radio" name="group1" value="e" id="respuesta1"> Ninguna se repite       
+    </fieldset><br><br><br>
+    
+    <fieldset id="group2" name="respuesta2">
+    <label for="">2. ¿Cúantas veces aparece la letra a?</label><br>
+    <label for="">La atmósfera</label><br>
+    <input type="radio" name="group2" value="a"> 1 aparicion<br>
+    <input type="radio" name="group2" value="b"> 2 apariciones<br>
+    <input type="radio" name="group2" value="c" id="respuesta2"> 3 apariciones<br>
+    <input type="radio" name="group2" value="d"> No aparece
+    </fieldset><br><br><br>
+
+    <fieldset id="group3" name="respuesta3">
+    <label for="">3. Comprueba si las siguientes dos series de letras son iguales o distintas:</label><br>
+    <label for="">"comvewpuvyy"     -     "comvewpuvyy"</label><br><br>
+    <input type="radio" name="group3" value="a" id="respuesta3"> Son iguales<br>
+    <input type="radio" name="group3" value="b" > Son distintas
+    </fieldset><br><br><br>
+
+    <fieldset id="group4" name="respuesta4">
+    <label for="">4. Cuál de las figuras es de color diferente a las demás:</label><br>
+    <img src="/img/colores.jpg" width="400px" alt=""><br><br>
+    <input type="radio" name="group4" value="a"> La figura a es de diferente color del resto<br>
+    <input type="radio" name="group4" value="b" id="respuesta4"> La figura b es de diferente color del resto<br>
+    <input type="radio" name="group4" value="c"> La figura c es de diferente color del resto<br>
+    <input type="radio" name="group4" value="d"> La figura d es de diferente color del resto<br>
+    <input type="radio" name="group4" value="e"> Todos las figuras son iguales
+    </fieldset><br><br><br>
+    
+    <!-- Sign up button -->
+    <button class="btn btn-info my-4 btn-block" type="submit" onclick="aprobado()">Finalizar</button>
+
+</form>
+    <hr>
+        </div>
+</div>
+<style>
+    .actives-menu{
+        background-color: #B0BEC5;
+        color: #fff;
+        margin: 12px,
+    }
+</style>
+
+
+<script>
+    var respuesta1 = document.getElementsByName('group1')
+    var respuesta2 = document.getElementsByName('group2')
+    var respuesta3 = document.getElementsByName('group3')
+    var respuesta4 = document.getElementsByName('group4')
+    function validar(){
+        if( (respuesta1[0].checked || respuesta1[1].checked || respuesta1[2].checked || respuesta1[3].checked || respuesta1[4].checked) 
+        && (respuesta2[0].checked || respuesta2[1].checked || respuesta2[2].checked || respuesta2[3].checked)
+        && (respuesta3[0].checked || respuesta3[1].checked)
+        && (respuesta4[0].checked || respuesta4[1].checked || respuesta4[2].checked || respuesta4[3].checked || respuesta4[4].checked )){
+            return true
+        }else{
+            alert("Responda todas las preguntas")
+            return false
+        }
+    }
+
+</script>

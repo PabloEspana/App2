@@ -1,0 +1,119 @@
+<script>
+  var tiempo = 10
+  function desaparecer() {
+    if (tiempo < 0) {
+      imagenes.style.visibility = "visible"
+      contenedor.style.display = "none"
+      Segundos.style.display = "none"
+      imagenes.style.visibility = "visible"
+      texto.style.visibility = "visible"
+
+    } else {
+      Segundos.innerHTML = tiempo
+      tiempo--
+    }
+
+  }
+  function cronometro() {
+    setInterval(desaparecer, 1000);
+  }
+
+</script>
+<div class="row">
+  <div class="col-3" id="sidebar">
+    <div class="list-group">
+      <a href="#" class="list-group-item active">Módulos</a>
+      <a href="/users/deficit-de-atencion" class="list-group-item">Introducción</a>
+      <a href="/users/deficit-de-atencion/modulo1" class="list-group-item">Módulo 1</a>
+      <a href="/users/deficit-de-atencion/modulo2" class="list-group-item">Módulo 2</a>
+      <a href="/users/deficit-de-atencion/modulo3" class="list-group-item">Módulo 3</a>
+      <a href="/users/deficit-de-atencion/modulo4" class="list-group-item">Módulo 4</a>
+      <a href="/users/deficit-de-atencion/prueba-final" class="list-group-item">Prueba Final</a>
+    </div>
+  </div>
+  <!--/.sidebar-offcanvas-->
+  <div class="col-9">
+    <h3>Módulo 1 - Memoriza</h3>
+
+    <p>El niño deberá memorizar la figura que aparece a continuación y posteriormente seleccionar la que coincide </p>
+
+
+    <div id="cronometro">
+      <div class="reloj" id="Segundos">10</div>
+    </div>
+    <div id="contenedor">
+      <img class="mx-auto d-block" id="imagen" src="/img/pelota.jpg" alt="" width="320px" onload="cronometro()">
+
+    </div>
+    <br>
+
+    <h3 id="texto" style="visibility:hidden">¿Cuál de estas fue la figura que apareció?</h3>
+    <br>
+    <div class="row" id="imagenes" style="visibility:hidden">
+
+      <div class="col-3 " draggable="true">
+        <img src="/img/pelota2.jpg" name="Incorrecta" onclick="comprobar(this)" class="mx-auto d-block imagen" draggable="true" alt=""
+          id="img1" width="80px">
+      </div>
+
+      <div class="col-3" draggable="true">
+        <img src="/img/pelota3.jpg" name="Incorrecta" onclick="comprobar(this)" class="mx-auto d-block imagen" draggable="true" alt=""
+          id="img3" width="80px">
+      </div>
+      <div class="col-3" draggable="true">
+        <img src="/img/pelota4.jpg" name="Incorrecta" onclick="comprobar(this)" class="mx-auto d-block imagen" draggable="true" alt=""
+          id="img2" width="80px">
+      </div>
+      <div class="col-3" draggable="true">
+        <img src="/img/pelota.jpg" name="Correcta" onclick="comprobar(this)" class="mx-auto d-block imagen" draggable="true" alt=""
+          id="img4" width="80px">
+      </div>
+      <br>
+    </div>
+
+
+
+
+
+
+  </div>
+</div>
+
+<style>
+  .actives-menu {
+    background-color: #B0BEC5;
+    color: #fff;
+    margin: 12px,
+  }
+
+  #cronometro {
+    color: green;
+    text-align: right;
+    padding-right: 40px;
+    font-size: 40px;
+    font-style: bold;
+  }
+</style>
+
+
+<script>
+  function comprobar(e) {
+    alert("Tu respuesta es " + e.name)
+    var http = new XMLHttpRequest()
+    var url = "/users/nivel1-modulo1"
+    var params = "respuesta=" + e.name
+    http.open("POST", url, true);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //http.setRequestHeader("Content-length", params.length);
+    //http.setRequestHeader("Connection", "close");
+    http.onreadystatechange = function () {
+      if (http.readyState == 4 && http.status == 200) {
+        alert(http.responseText);
+        window.location = "/users/deficit-de-atencion/modulo2"
+      }if (http.status == 500 || http.status == 404) {
+        alert(http.responseText)
+      }
+    }
+    http.send(params);
+  }
+</script>

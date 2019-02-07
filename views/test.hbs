@@ -1,0 +1,73 @@
+
+<!-- Default form register 
+<form class="text-center" method="POST" action="/users/realizar-test/?id={{user.id}}" onsubmit = 'return  validar()'>
+-->
+<form class="text-center" method="POST" action="/users/realizar-test/?id={{user.id}}" onsubmit = 'return  validar()'>
+
+    <p class="h4 mb-4">Test de evaluación</p>
+
+    <input type="hidden" value="{{user.id}}" />
+
+    <label for="">1. Encuentra la figura que es distinta de las demás:</label><br>
+    <img src="https://www.psicoactiva.com/test/tests/147/images/t4_p1.png?1510563566944" alt=""><br><br>
+    <fieldset id="group1" name="respuesta1">
+    <input type="radio" name="group1" value="a"> El sobre a es distinto al resto<br>
+    <input type="radio" name="group1" value="b"> El sobre b es distinto al resto<br>
+    <input type="radio" name="group1" value="c" id="respuesta1" > El sobre c es distinto al resto<br>
+    <input type="radio" name="group1" value="d"> El sobre d es distinto al resto<br>
+    <input type="radio" name="group1" value="e"> Todos los sobres son iguales        
+    </fieldset><br><br><br>
+    
+    <fieldset id="group2" name="respuesta2">
+    <label for="">2. Cuenta todas las apariciones del núnero 8:</label><br>
+    <label for="">860688606806066800680688608060086806680860868</label><br>
+    <input type="radio" name="group2" value="a"> 13 apariciones<br>
+    <input type="radio" name="group2" value="b"> 14 apariciones<br>
+    <input type="radio" name="group2" value="c" id="respuesta2"> 15 apariciones<br>
+    <input type="radio" name="group2" value="d"> 16 apariciones
+    </fieldset><br><br><br>
+
+    <fieldset id="group3" name="respuesta3">
+    <label for="">3. Comprueba si las siguientes dos series de letras son iguales o distintas:</label><br>
+    <label for="">"comvewpuvyy"     -     "comvewpueyy"</label><br><br>
+    <input type="radio" name="group3" value="a"> Son iguales<br>
+    <input type="radio" name="group3" value="b" id="respuesta3"> Son distintas
+    </fieldset><br><br><br>
+
+    <fieldset id="group4" name="respuesta4">
+    <label for="">4. Encuentra la figura que es distinta de las demás:</label><br>
+    <img src="https://www.psicoactiva.com/test/tests/147/images/t4_p8.png?1510563632929" alt=""><br><br>
+    <input type="radio" name="group4" value="a"> La figura a es distinta al resto<br>
+    <input type="radio" name="group4" value="b"> La figura b es distinta al resto<br>
+    <input type="radio" name="group4" value="c"> La figura c es distinta al resto<br>
+    <input type="radio" name="group4" value="d" id="respuesta4"> La figura d es distinta al resto<br>
+    <input type="radio" name="group4" value="e"> Todos las figuras son iguales
+    </fieldset><br><br><br>
+    
+    <!-- Sign up button -->
+    <button class="btn btn-info my-4 btn-block" type="submit">Finalizar</button>
+
+    <hr>
+
+</form>
+<!-- Default form register -->
+
+<script>
+    var respuesta1 = document.getElementsByName('group1')
+    var respuesta2 = document.getElementsByName('group2')
+    var respuesta3 = document.getElementsByName('group3')
+    var respuesta4 = document.getElementsByName('group4')
+    function validar(){
+        if( (respuesta1[0].checked || respuesta1[1].checked || respuesta1[2].checked || respuesta1[3].checked || respuesta1[4].checked) 
+        && (respuesta2[0].checked || respuesta2[1].checked || respuesta2[2].checked || respuesta2[3].checked)
+        && (respuesta3[0].checked || respuesta3[1].checked)
+        && (respuesta4[0].checked || respuesta4[1].checked || respuesta4[2].checked || respuesta4[3].checked || respuesta4[4].checked )){
+            return true
+        }else{
+            alert("Responda todas las preguntas")
+            return false
+        }
+    }
+
+</script>
+

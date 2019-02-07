@@ -1,0 +1,167 @@
+<div class="row">
+  <div class="col-3" id="sidebar">
+    <div class="list-group">
+      <a href="#" class="list-group-item active">Módulos</a>
+      <a href="/users/deficit-de-atencion" class="list-group-item">Introducción</a>
+      <a href="/users/deficit-de-atencion/modulo1" class="list-group-item">Módulo 1</a>
+      <a href="/users/deficit-de-atencion/modulo2" class="list-group-item">Módulo 2</a>
+      <a href="/users/deficit-de-atencion/modulo3" class="list-group-item">Módulo 3</a>
+      <a href="/users/deficit-de-atencion/modulo4" class="list-group-item">Módulo 4</a>
+      <a href="/users/deficit-de-atencion/prueba-final" class="list-group-item">Prueba Final</a>
+    </div>
+  </div>
+  <!--/.sidebar-offcanvas-->
+  <div class="col-9">
+    <h3>Módulo 2 - Sopa de letras</h3>
+
+    <p>El niño deberá seleccionar las letras que conforman la palabra que representa el siguiente dibujo </p>
+    <br>
+    <h3 id="">Intentos :</h3>
+    <h3 id="Intentos">5</h3>
+    <img class="mx-auto d-block" src="/img/mochila.png" alt="" width="320px">
+    <br>
+
+    <div style="">
+      <h3 style="float:left" id="Letra1">_</h3>
+      <h3 style="float:left" id="Letra2">_</h3>
+      <h3 style="float:left" id="Letra3">_</h3>
+      <h3 style="float:left" id="Letra4">_</h3>
+      <h3 style="float:left" id="Letra5">_</h3>
+      <h3 style="float:left" id="Letra6">_</h3>
+      <h3 style="" id="Letra7">_</h3>
+    </div>
+
+    <br>
+    <div style="text-align:center">
+      <button class="letras" onclick="comprobar(this)">A</button>
+      <button class="letras" onclick="comprobar(this)">B</button>
+      <button class="letras" onclick="comprobar(this)">C</button>
+      <button class="letras" onclick="comprobar(this)">D</button>
+      <button class="letras" onclick="comprobar(this)">E</button>
+      <button class="letras" onclick="comprobar(this)">F</button>
+      <button class="letras" onclick="comprobar(this)">G</button>
+      <button class="letras" onclick="comprobar(this)">H</button>
+      <br>
+      <button class="letras" onclick="comprobar(this)">I</button>
+      <button class="letras" onclick="comprobar(this)">J</button>
+      <button class="letras" onclick="comprobar(this)">K</button>
+      <button class="letras" onclick="comprobar(this)">L</button>
+      <button class="letras" onclick="comprobar(this)">M</button>
+      <button class="letras" onclick="comprobar(this)">N</button>
+      <button class="letras" onclick="comprobar(this)">Ñ</button>
+      <button class="letras" onclick="comprobar(this)">O</button>
+      <br>
+      <button class="letras" onclick="comprobar(this)">P</button>
+      <button class="letras" onclick="comprobar(this)">Q</button>
+      <button class="letras" onclick="comprobar(this)">R</button>
+      <button class="letras" onclick="comprobar(this)">S</button>
+      <button class="letras" onclick="comprobar(this)">T</button>
+      <button class="letras" onclick="comprobar(this)">U</button>
+      <button class="letras" onclick="comprobar(this)">V</button>
+      <button class="letras" onclick="comprobar(this)">W</button>
+      <br>
+      <button class="letras">X</button>
+      <button class="letras">Y</button>
+      <button class="letras">Z</button>
+    </div>
+
+
+  </div>
+</div>
+<style>
+  .actives-menu {
+    background-color: #B0BEC5;
+    color: #fff;
+    margin: 12px,
+  }
+
+  .letras {
+    background-color: #FDD835;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    padding: 10px;
+    color: #fff -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    font-size: 16px;
+    line-height: 32px;
+    text-transform: uppercase;
+  }
+</style>
+
+<script>
+  letra1 = false, letra2 = false, letra3 = false, letra4 = false, letra5 = false, letra6 = false,
+    letra7 = false
+  function comprobar(e) {
+    var errores = 4
+    estado = null
+
+    if (e.innerHTML == "M") {
+      Letra1.innerHTML = "M"
+      letra1 = true
+    }
+    if (e.innerHTML == "O") {
+      Letra2.innerHTML = "O"
+      letra2 = true
+    }
+    if (e.innerHTML == "C") {
+      Letra3.innerHTML = "C"
+      letra3 = true
+    }
+    if (e.innerHTML == "H") {
+      Letra4.innerHTML = "H"
+      letra4 = true
+    }
+    if (e.innerHTML == "I") {
+      Letra5.innerHTML = "I"
+      letra5 = true
+    }
+    if (e.innerHTML == "L") {
+      Letra6.innerHTML = "L"
+      letra6 = true
+    }
+    if (e.innerHTML == "A") {
+      Letra7.innerHTML = "A"
+      letra7 = true
+    }
+
+    if (e.innerHTML != "M" && e.innerHTML != "O" && e.innerHTML != "C" && e.innerHTML != "H" && e.innerHTML != "I"
+      && e.innerHTML != "L" && e.innerHTML != "A") {
+      Intentos.innerHTML = parseInt(Intentos.innerHTML) - 1
+      if (Intentos.innerHTML == "0") {
+        estado = "Incorrecta"
+        alert("Ha superado el número máximo de intentos")
+        enviarDatos(estado)
+      }
+    }
+
+    if (letra1 == true && letra2 == true && letra3 == true && letra4 == true && letra5 == true && letra6 == true
+      && letra7 == true) {
+      estado = "Correcta"
+      alert("Ha respondido correctamentes")
+      enviarDatos(estado)
+    }
+
+  }
+
+  function enviarDatos(estado) {
+    var http = new XMLHttpRequest()
+    var url = "/users/nivel1-modulo2"
+    var params = "respuesta=" + estado
+    http.open("POST", url, true);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //http.setRequestHeader("Content-length", params.length);
+    //http.setRequestHeader("Connection", "close");
+    http.onreadystatechange = function () {
+      if (http.readyState == 4 && http.status == 200) {
+        alert(http.responseText);
+        window.location = "/users/deficit-de-atencion/modulo3"
+      } if (http.status == 500 || http.status == 404) {
+        alert(http.responseText)
+      }
+    }
+    http.send(params);
+  }
+
+</script>

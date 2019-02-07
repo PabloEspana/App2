@@ -1,0 +1,56 @@
+<!-- Default form register -->
+<form class="text-center border border-light p-5" method="POST" action="/users/registro">
+
+    <p class="h4 mb-4">Registro</p>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- First name -->
+            <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Nombres" name="nombres">
+        </div>
+        <div class="col">
+            <!-- Last name -->
+            <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Apellidos" name="apellidos">
+        </div>
+    </div>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- E-mail -->
+            <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Correo Electrónico" name="correo">
+        </div>
+    </div>
+
+    
+    <!-- Password -->
+    <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Contraseña" aria-describedby="defaultRegisterFormPasswordHelpBlock"
+        name="contrasena">
+    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+        Mínimo 8 carácteres y 1 dígito
+    </small>
+
+    <!-- Password 2-->
+    <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Confirmación de contraseña" aria-describedby="defaultRegisterFormPasswordHelpBlock"
+        name="contrasena2">
+    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+    </small>
+
+    <!-- Terms of service -->
+    <p>Al hacer click en
+        <em>Registrar</em> usted está de acuerdo con nuestros
+        <a href="" target="_blank">términos de servicio</a>. </p>
+
+    <!-- Sign up button -->
+    <button class="btn btn-info my-4 btn-block" type="submit">Registrar</button>
+
+    <hr>
+
+
+    <!-- Register -->
+    <p>¿Ya está registrado?
+        <a href="/login">Inicie Sesión</a>
+    </p>
+
+
+</form>
+<!-- Default form register -->

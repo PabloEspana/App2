@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-3" id="sidebar">
+    <div class="list-group">
+      <a href="#" class="list-group-item active">Módulos</a>
+      <a href="/users/disgrafia" class="list-group-item">Introducción</a>
+      <a href="/users/disgrafia/modulo1" class="list-group-item">Módulo 1</a>
+      <a href="/users/disgrafia/modulo2" class="list-group-item">Módulo 2</a>
+      <a href="/users/disgrafia/modulo3" class="list-group-item">Módulo 3</a>
+      <a href="/users/disgrafia/prueba-final" class="list-group-item">Prueba Final</a>
+    </div>
+  </div>
+  <!--/.sidebar-offcanvas-->
+  <div class="col-9">
+    <h3>Módulo 2 - Comprensión de lectura</h3>
+
+    <p>Debe leer la pregunta o adivinanza que estará ubicada en el centro y hacer clic 
+      en una de las cuatro posibles respuestas que se encuentran ubicados en la parte de abajo </p>
+    <br>
+
+    <br>
+
+
+    <div style="text-align:center; font-size:24px;">
+      Verde como el campo, <br>
+pero campo no es. <br>
+Habla como el hombre, <br>
+pero hombre no es.
+    </div>
+
+<br><br>
+    <div class="row" id="imagenes">
+              <div class="col-3 " draggable="true">
+                <img src="/img/perro.jpg" name="Incorrecta" onclick="comprobar(this)" class="mx-auto d-block imagen" draggable="true" alt="" id="img1" height="70px" width="120px">
+              </div>
+              <div class="col-3" draggable="true">
+                <img src="/img/loro.jpg" name="Correcta" onclick="comprobar(this)" class="mx-auto d-block imagen" draggable="true" alt="" id="img2" width="100px">
+              </div>
+              <div class="col-3" draggable="true">
+                <img src="/img/elefante.jpg" name="Incorrecta" onclick="comprobar(this)" class="mx-auto d-block imagen"  draggable="true" alt="" id="img3" width="100px">
+              </div>
+              <div class="col-3" draggable="true">
+                <img src="/img/hulk.jpg"  name="Incorrecta" onclick="comprobar(this)" class="mx-auto d-block" draggable="true" alt="" id="img4" height="90px" width="100px">
+              </div>
+              <br>
+            </div>
+
+
+  </div>
+</div>
+<style>
+  .actives-menu {
+    background-color: #B0BEC5;
+    color: #fff;
+    margin: 12px,
+  }
+
+  .letras {
+    background-color: #FDD835;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    padding: 10px;
+    color: #fff -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    font-size: 16px;
+    line-height: 32px;
+    text-transform: uppercase;
+  }
+</style>
+
+<script>
+
+function comprobar(e) {
+    alert("Tu respuesta es " + e.name)
+    var http = new XMLHttpRequest()
+    var url = "/users/nivel3-modulo2"
+    var params = "respuesta=" + e.name
+    http.open("POST", url, true);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //http.setRequestHeader("Content-length", params.length);
+    //http.setRequestHeader("Connection", "close");
+    http.onreadystatechange = function () {
+      if (http.readyState == 4 && http.status == 200) {
+        alert(http.responseText);
+        window.location = "/users/disgrafia/modulo3"
+      }if (http.status == 500 || http.status == 404) {
+        alert(http.responseText)
+      }
+    }
+    http.send(params);
+  }
+</script>

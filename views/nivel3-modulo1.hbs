@@ -1,0 +1,159 @@
+<script>
+
+</script>
+<div class="row">
+  <div class="col-3" id="sidebar">
+    <div class="list-group">
+      <a href="#" class="list-group-item active">Módulos</a>
+      <a href="/users/disgrafia" class="list-group-item">Introducción</a>
+      <a href="/users/disgrafia/modulo1" class="list-group-item">Módulo 1</a>
+      <a href="/users/disgrafia/modulo2" class="list-group-item">Módulo 2</a>
+      <a href="/users/disgrafia/modulo3" class="list-group-item">Módulo 3</a>
+      <a href="/users/disgrafia/prueba-final" class="list-group-item">Prueba Final</a>
+    </div>
+  </div>
+  <!--/.sidebar-offcanvas-->
+  <div class="col-9">
+    <h3>Módulo 1 - Concéntrese</h3>
+
+    <p>Debe encontrar parejas de letras iguales en el siguiente panel,
+      en donde cada celda contiene una letra. Cada pareja de letras iguales
+       que vaya encontrando se mantendrá visible hasta que la totalidad de parejas se descubran </p>
+
+
+
+
+<div id="memory_board"></div>
+
+  </div>
+</div>
+
+<style>
+  .actives-menu {
+    background-color: #B0BEC5;
+    color: #fff;
+    margin: 12px,
+  }
+
+  #cronometro {
+    color: green;
+    text-align: right;
+    padding-right: 40px;
+    font-size: 40px;
+    font-style: bold;
+  }
+</style>
+
+
+<script>
+  function comprobar(estado) {
+    var http = new XMLHttpRequest()
+    var url = "/users/nivel3-modulo1"
+    var params = "respuesta=" + estado
+    http.open("POST", url, true);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //http.setRequestHeader("Content-length", params.length);
+    //http.setRequestHeader("Connection", "close");
+    http.onreadystatechange = function () {
+      if (http.readyState == 4 && http.status == 200) {
+        alert(http.responseText);
+        window.location = "/users/disgrafia/modulo2"
+      } if (http.status == 500 || http.status == 404) {
+        alert(http.responseText)
+      }
+    }
+    http.send(params);
+  }
+</script>
+
+<script>
+// Scripted By Adam Khoury in connection with the following video tutorial:
+// http://www.youtube.com/watch?v=c_ohDPWmsM0
+var memory_array = ['A','A','B','B','C','C','D','D','E','E','F','F','G','G','H','H','I','I','J','J','K','K','L','L'];
+var memory_values = [];
+var memory_tile_ids = [];
+var tiles_flipped = 0;
+Array.prototype.memory_tile_shuffle = function(){
+    var i = this.length, j, temp;
+    while(--i > 0){
+        j = Math.floor(Math.random() * (i+1));
+        temp = this[j];
+        this[j] = this[i];
+        this[i] = temp;
+    }
+}
+function newBoard(){
+	tiles_flipped = 0;
+	var output = '';
+    memory_array.memory_tile_shuffle();
+	for(var i = 0; i < memory_array.length; i++){
+		output += '<div id="tile_'+i+'" onclick="memoryFlipTile(this,\''+memory_array[i]+'\')"></div>';
+	}
+	document.getElementById('memory_board').innerHTML = output;
+}
+function memoryFlipTile(tile,val){
+	if(tile.innerHTML == "" && memory_values.length < 2){
+		tile.style.background = '#FFF';
+		tile.innerHTML = val;
+		if(memory_values.length == 0){
+			memory_values.push(val);
+			memory_tile_ids.push(tile.id);
+		} else if(memory_values.length == 1){
+			memory_values.push(val);
+			memory_tile_ids.push(tile.id);
+			if(memory_values[0] == memory_values[1]){
+				tiles_flipped += 2;
+				// Clear both arrays
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					alert("Ha encontrado las parejas de letras correctas");
+          comprobar("Correcto")
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();
+				}
+			} else {
+				function flip2Back(){
+				    // Flip the 2 tiles back over
+				    var tile_1 = document.getElementById(memory_tile_ids[0]);
+				    var tile_2 = document.getElementById(memory_tile_ids[1]);
+				    tile_1.style.background = 'url(tile_bg.jpg) no-repeat';
+            	    tile_1.innerHTML = "";
+				    tile_2.style.background = 'url(tile_bg.jpg) no-repeat';
+            	    tile_2.innerHTML = "";
+				    // Clear both arrays
+				    memory_values = [];
+            	    memory_tile_ids = [];
+				}
+				setTimeout(flip2Back, 700);
+			}
+		}
+	}
+}
+</script>
+
+<style>
+div#memory_board{
+	background-color: cornflowerblue;
+	border:#999 1px solid;
+	width:800px;
+	height:540px;
+	padding:24px;
+	margin:0px auto;
+}
+div#memory_board > div{
+  	background-color:lightskyblue;
+	border:#000 1px solid;
+	width:100px;
+	height:100px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+	cursor:pointer;
+	text-align:center;
+}
+</style>
+
+<script>newBoard();</script>

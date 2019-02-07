@@ -1,0 +1,246 @@
+<script>alert(window.location)</script>
+
+
+ {{#if testCompletado}}
+<div class="alert alert-success" role="alert">
+    {{testCompletado}}
+</div>
+{{else}} {{/if}} {{#if ( and (eq user.tipoUsuario 'Estudiante') (eq user.test false ) ) }}
+<div class="alert alert-warning">
+    Antes de matricularse en los cursos debe realizar el siguiente
+    <a href="/users/test">test</a>
+</div>
+
+<h3 class="blue-text">
+    Bienvenido/a {{user.nombres}} {{user.apellidos}}
+</h3>
+<h6>
+    Realice el test para poder acceder a los cursos.
+</h6>
+<br>
+<br> {{else if ( and (eq user.tipoUsuario 'Estudiante') (eq user.test true ) ) }}
+<br>
+<br>
+<div class="row">
+    <div class="col-4">
+        <img height="180px" class="mx-auto d-block" src="https://milenachaconretana.files.wordpress.com/2013/02/images.jpg" alt="">
+    </div>
+    <div class="col-4">
+        <img height="180px" class="mx-auto d-block" src="https://images.publicargratis.com.ar/2017/03/09/psicopedagoga-ofrece-clases-de-apoyo_g1zb4w0_3.jpg"
+            alt="">
+    </div>
+    <div class="col-4">
+        <img height="180px" class="mx-auto d-block" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDmImgJORvUtV-QYpXZI_YOst4J1zETfma-cPgvH8VxcRw2SIM"
+            alt="">
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <div class="card card-cascade wider">
+            <!-- Card image -->
+            <div class="view view-cascade gradient-card-header peach-gradient personalizacion">
+                <!-- Title -->
+                <a href="/users/deficit-de-atencion">
+                    <h2 class="card-header-title mb-3 white-text" style="font-weight: bold;">Déficit de atención</h2>
+                </a>
+                <i class="fa fa-calendar mr-2"></i>Detalles:
+                <p class="mb-0">
+                    Mejora los problemas de disminución en la atención debido a aspectos sicológicos, el desarrollo psicológico, físico y motor
+                    de los niños.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card card-cascade wider">
+            <!-- Card image -->
+            <div class="view view-cascade gradient-card-header peach-gradient personalizacion2">
+                <!-- Title -->
+                <h2 class="card-header-title mb-3" style="font-weight: bold;">Discalculia</h2>
+                <i class="fa fa-calendar mr-2"></i>Detalles
+                <p class="mb-0">Mejora el proceso de aprendizaje del cálculo en niños que presentan problemas al manejar números, operaciones
+                    y conceptos matemáticos</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card card-cascade wider">
+            <!-- Card image -->
+            <div class="nivel-2 view view-cascade gradient-card-header peach-gradient personalizacion2">
+                <!-- Title -->
+                <a href="/users/disgrafia">
+                    <h2 class="card-header-title mb-3 white-text" style="font-weight: bold;">Disgrafía</h2>
+                </a>
+                <i class="fa fa-calendar mr-2"></i>Detalles
+                <p class="mb-0">Ideal para niños con problemas para aprender a escribir, leer e identificar sonidos lo cual dificulta su
+                    proceso de aprendizaje.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}} {{#if ( and (eq user.tipoUsuario 'Docente') ) }}
+
+<h2>Resultados de test de estudiantes</h2>
+<p>Respuestas correctas:</p>
+<p>Pregunta 1: C, Pregunta 2: C, Pregunta 3: B, Pregunta 4:D</p>
+<div class="table-responsive text-nowrap" onload="evaluar()">
+    <table id="table" class="table table-hover table-sm">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre del estudiante</th>
+                <th scope="col">Pregunta 1</th>
+                <th scope="col">Pregunta 2</th>
+                <th scope="col">Pregunta 3</th>
+                <th scope="col">Pregunta 4</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each estudiantes}}
+            <tr>
+                <th scope="row">{{counter @index}}</th>
+                <td>{{nombres}} {{apellidos}}</td>
+
+                {{#each resultadoTest}}
+                <td class="respuesta{{counter @index}}" style="text-align:center">{{this}}</td>
+                {{/each}}
+
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+{{/if}}
+
+
+<style>
+    .personalizacion {
+        background-color: #000;
+        color: #fff;
+        padding: 20px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        background-image: -webkit-gradient( linear,
+        left bottom,
+        right bottom,
+        color-stop(0, rgb(114, 224, 219)),
+        color-stop(0.74, rgb(68, 182, 235)));
+        background-image: -o-linear-gradient(right, rgb(114, 224, 219) 0%, rgb(68, 182, 235) 74%);
+        background-image: -moz-linear-gradient(right, rgb(114, 224, 219) 0%, rgb(68, 182, 235) 74%);
+        background-image: -webkit-linear-gradient(right, rgb(114, 224, 219) 0%, rgb(68, 182, 235) 74%);
+        background-image: -ms-linear-gradient(right, rgb(114, 224, 219) 0%, rgb(68, 182, 235) 74%);
+        background-image: linear-gradient(to right, rgb(114, 224, 219) 0%, rgb(68, 182, 235) 74%);
+    }
+
+    .personalizacion2 {
+        background-color: #CFD8DC;
+        color: #fff;
+        padding: 20px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+
+    .personalizacion3 {
+        background-color: #CFD8DC;
+        color: #fff;
+        padding: 20px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+
+    .personalizacion4 {
+        background-color: #000;
+        color: #fff;
+        padding: 20px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        background-image: -webkit-gradient( linear,
+        left bottom,
+        right bottom,
+        color-stop(0, rgb(114, 224, 219)),
+        color-stop(0.74, rgb(68, 182, 235)));
+        background-image: -o-linear-gradient(right, rgb(114, 224, 219) 0%, rgb(68, 182, 235) 74%);
+        background-image: -moz-linear-gradient(right, rgb(114, 224, 219) 0%, rgb(68, 182, 235) 74%);
+        background-image: -webkit-linear-gradient(right, rgb(114, 224, 219) 0%, rgb(68, 182, 235) 74%);
+        background-image: -ms-linear-gradient(right, rgb(114, 224, 219) 0%, rgb(68, 182, 235) 74%);
+        background-image: linear-gradient(to right, rgb(114, 224, 219) 0%, rgb(68, 182, 235) 74%);
+
+
+        background: rgba(248, 181, 0, 1);
+        background: -moz-linear-gradient(left, rgba(248, 181, 0, 1) 0%, rgba(252, 234, 187, 1) 0%, rgba(252, 205, 77, 1) 4%, rgba(248, 181, 0, 1) 22%, rgba(227, 128, 41, 1) 100%);
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(248, 181, 0, 1)), color-stop(0%, rgba(252, 234, 187, 1)), color-stop(4%, rgba(252, 205, 77, 1)), color-stop(22%, rgba(248, 181, 0, 1)), color-stop(100%, rgba(227, 128, 41, 1)));
+        background: -webkit-linear-gradient(left, rgba(248, 181, 0, 1) 0%, rgba(252, 234, 187, 1) 0%, rgba(252, 205, 77, 1) 4%, rgba(248, 181, 0, 1) 22%, rgba(227, 128, 41, 1) 100%);
+        background: -o-linear-gradient(left, rgba(248, 181, 0, 1) 0%, rgba(252, 234, 187, 1) 0%, rgba(252, 205, 77, 1) 4%, rgba(248, 181, 0, 1) 22%, rgba(227, 128, 41, 1) 100%);
+        background: -ms-linear-gradient(left, rgba(248, 181, 0, 1) 0%, rgba(252, 234, 187, 1) 0%, rgba(252, 205, 77, 1) 4%, rgba(248, 181, 0, 1) 22%, rgba(227, 128, 41, 1) 100%);
+        background: linear-gradient(to right, rgba(248, 181, 0, 1) 0%, rgba(252, 234, 187, 1) 0%, rgba(252, 205, 77, 1) 4%, rgba(248, 181, 0, 1) 22%, rgba(227, 128, 41, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8b500', endColorstr='#e38029', GradientType=1);
+    }
+</style>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<script>
+    nivel1 = localStorage.getItem("nivel1");
+    var cuadro = document.querySelector('.nivel-2');
+
+    if (nivel1 == null) {
+        console.log("No ha aprobado el nivel 1")
+    } else {
+        var elemento = document.querySelectorAll(".nivel-2");
+        for (var i = 0; i < elemento.length; i++) {
+            elemento[i].classList.remove("personalizacion2");
+            elemento[i].classList.add("personalizacion4");
+        }
+    }
+</script>
+
+
+<script>
+
+
+    window.onload = () => { // Evento de carga
+        respuestas1 = document.getElementsByClassName('respuesta1');   
+        respuestas2 = document.getElementsByClassName('respuesta2');   
+        respuestas3 = document.getElementsByClassName('respuesta3');   
+        respuestas4 = document.getElementsByClassName('respuesta4');   
+
+        for(i = 0; i<respuestas1.length; i++){
+            if(respuestas1[i].innerHTML == "c"){
+                respuestas1[i].style.background="#00E676"
+            }else if(respuestas1[i].innerHTML != "c"){
+                respuestas1[i].style.background="#E53935"
+            }
+        }
+
+        for(i = 0; i<respuestas2.length; i++){
+            if(respuestas2[i].innerHTML == "c"){
+                respuestas2[i].style.background="#00E676"
+            }else if(respuestas2[i].innerHTML != "c"){
+                respuestas2[i].style.background="#E53935"
+            }
+        }
+
+        for(i = 0; i<respuestas3.length; i++){
+            if(respuestas3[i].innerHTML == "b"){
+                respuestas3[i].style.background="#00E676"
+            }else if(respuestas3[i].innerHTML != "b"){
+                respuestas3[i].style.background="#E53935"
+            }
+        }
+
+        for(i = 0; i<respuestas4.length; i++){
+            if(respuestas4[i].innerHTML == "d"){
+                respuestas4[i].style.background="#00E676"
+            }else if(respuestas4[i].innerHTML != "d"){
+                respuestas4[i].style.background="#E53935"
+            }
+        }
+    }
+</script>

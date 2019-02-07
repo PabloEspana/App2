@@ -1,0 +1,76 @@
+<div class="row">
+       <div class="col-3" id="sidebar">
+          <div class="list-group">
+            <a href="#" class="list-group-item active">Módulos</a>
+            <a href="/users/deficit-de-atencion" class="list-group-item">Introducción</a>
+            <a href="/users/deficit-de-atencion/modulo1" class="list-group-item">Módulo 1</a>
+            <a href="/users/deficit-de-atencion/modulo2" class="list-group-item">Módulo 2</a>
+            <a href="/users/deficit-de-atencion/modulo3" class="list-group-item">Módulo 3</a>
+            <a href="/users/deficit-de-atencion/modulo4" class="list-group-item">Módulo 4</a>
+            <a href="/users/deficit-de-atencion/prueba-final" class="list-group-item">Prueba Final</a>
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+        <div class="col-9">
+            <h3>Módulo 3 - Completa la figura</h3>
+            <p>Deberá completar siguiente  figura, en la parte de abajo se muestran diferentes partes. 
+              El niño debe seleccionar la parte apropiada para completar la figura. </p>
+            <br>
+            <img class="mx-auto d-block" src="/img/completar.jpg" alt="" width="320px">
+            <br>
+            <div class="row" id="imagenes">
+              <div class="col-3 " draggable="true">
+                <img src="/img/1.jpg" name="Incorrecta" onclick="comprobar(this)" class="mx-auto d-block imagen" draggable="true" alt="" id="img1" width="80px">
+              </div>
+              <div class="col-3" draggable="true">
+                <img src="/img/2.jpg" name="Correcta" onclick="comprobar(this)" class="mx-auto d-block imagen" draggable="true" alt="" id="img2" width="80px">
+              </div>
+              <div class="col-3" draggable="true">
+                <img src="/img/3.jpg" name="Incorrecta" onclick="comprobar(this)" class="mx-auto d-block imagen"  draggable="true" alt="" id="img3" width="80px">
+              </div>
+              <div class="col-3" draggable="true">
+                <img src="/img/4.jpg"  name="Incorrecta" onclick="comprobar(this)" class="mx-auto d-block" draggable="true" alt="" id="img4" width="80px">
+              </div>
+              <br>
+            </div>
+        </div>
+</div>
+<style>
+    .actives-menu{
+        background-color: #B0BEC5;
+        color: #fff;
+        margin: 12px,
+    }
+</style>
+
+<script>
+  function handleDragStart(e) {
+  this.style.opacity = '0.4';  // this / e.target is the source node.
+}
+
+var cols = document.querySelectorAll('#magenes .imagen');
+[].forEach.call(cols, function(col) {
+  col.addEventListener('dragstart', handleDragStart, false);
+});
+</script>
+
+<script>
+  function comprobar(e) {
+    alert("Tu respuesta es " + e.name)
+    var http = new XMLHttpRequest()
+    var url = "/users/nivel1-modulo3"
+    var params = "respuesta=" + e.name
+    http.open("POST", url, true);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //http.setRequestHeader("Content-length", params.length);
+    //http.setRequestHeader("Connection", "close");
+    http.onreadystatechange = function () {
+      if (http.readyState == 4 && http.status == 200) {
+        alert(http.responseText);
+        window.location = "/users/deficit-de-atencion/modulo4"
+      }if (http.status == 500 || http.status == 404) {
+        alert(http.responseText)
+      }
+    }
+    http.send(params);
+  }
+</script>
