@@ -1,4 +1,4 @@
-express = require('express'); // Nos sirve para crear mètodos de registro y consulta
+﻿express = require('express'); // Nos sirve para crear mètodos de registro y consulta
 router = express.Router();  // Creamos un router
 user = require('../models/users')
 prueba = require('../models/prueba')
@@ -36,7 +36,7 @@ router.get('/personas', (req, res) => {
 })
 
 router.get('/persona/:id', (req, res) => {
-    prueba.findById({ _id : req.params.id }, (err, datos) => { // Sentencia para consultar
+    prueba.findById({ identificador : req.params.id }, (err, datos) => { // Sentencia para consultar
         if (err) { // Si hay error
             console.log(err)
         } else {
@@ -49,6 +49,21 @@ router.get('/persona/:id', (req, res) => {
         }
     })
 })
+
+/*router.post('/personas', (req, res) => {
+    prueba.findById({ identificador : req.params.id }, (err, datos) => { // Sentencia para consultar
+        if (err) { // Si hay error
+            console.log(err)
+        } else {
+            if (!datos) { // Si no se encientran estudiantes se muestra un mensaje en consola
+                console.log("No hay datos")
+            } else {
+                // Si encuentra alumnos los envía a las vistas html para mostrarlos en tablas
+                res.send(datos)
+            }
+        }
+    })
+})*/
 
 
 router.get('/login',  (req, res) => {
