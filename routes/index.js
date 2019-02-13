@@ -67,26 +67,26 @@ router.delete('/persona/:id', (req, res) => {
 
 
 router.post('/personas', (req, res) => {
-	var datos = { identificador: req.body.identificador, 
-					nombre: req.body.nombre , 
-					campo1: req.body.campo1 ,
-					campo2: req.body.campo2 , 
+	var contenido = { identificador: req.body.identificador, 
+					nombre: req.body.nombre, 
+					campo1: req.body.campo1,
+					campo2: req.body.campo2, 
 					campo3: req.body.campo3, 
 					foto: req.body.foto
 				};
 
-    prueba.findOne({ identificador : req.body.identificador }, (err, datos) => { // Sentencia para consultar
+    prueba.findOne({ identificador : req.body.identificador }, (err, resultado) => { // Sentencia para consultar
         if (err) {
 			return res.send("Error al comprobar")
         } else {
-            if (datos) {
+            if (resultado) {
 				return res.send("Ya existe un registro con este identificador")
             } else {
-				prueba.create(datos, (err, datos) => {
+				prueba.create(contenido, (err, result) => {
 					if (err) {
 						return res.send("Error")
 					}else{
-						if (!datos) {
+						if (!result) {
 							return res.send("Error al registrar")
 						}else{
 							return res.send("Registrado") 
