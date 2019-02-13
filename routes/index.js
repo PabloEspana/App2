@@ -36,7 +36,7 @@ router.get('/personas', (req, res) => {
 })
 
 router.get('/persona/:id', (req, res) => {
-    prueba.findOne({ codigo_user : req.params.id }, (err, datos) => { // Sentencia para consultar
+    prueba.findOne({ identificador : req.params.id }, (err, datos) => { // Sentencia para consultar
         if (err) { // Si hay error
             console.log(err)
         } else {
@@ -51,7 +51,7 @@ router.get('/persona/:id', (req, res) => {
 })
 
 router.delete('/persona/:id', (req, res) => {
-    prueba.deleteOne({ codigo_user : req.params.id }, (err, eliminado) => { // Sentencia para consultar
+    prueba.deleteOne({ identificador : req.params.id }, (err, eliminado) => { // Sentencia para consultar
         if (err) { // Si hay error
 			return res.send("Error al eliminar")
         } else {
@@ -67,16 +67,7 @@ router.delete('/persona/:id', (req, res) => {
 
 
 router.post('/personas', (req, res) => {
-	var contenido = { 
-					codigo_user: req.body.codigo_user, 
-					nombre: req.body.nombre, 
-					campo1: req.body.campo1,
-					campo2: req.body.campo2, 
-					campo3: req.body.campo3, 
-					foto: req.body.foto
-				};
-
-    prueba.findOne({ codigo_user : req.body.codigo_user }, (err, resultado) => { // Sentencia para consultar
+    prueba.findOne({ identificador : req.body.identificador }, (err, resultado) => { // Sentencia para consultar
         if (err) {
 			return res.send("Error al comprobar")
         } else {
