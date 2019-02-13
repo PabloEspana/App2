@@ -89,7 +89,7 @@ router.post('/personas', (req, res) => {
 						if (!datos) {
 							return res.send("Error al registrar")
 						}else{
-							return res.send("Registrado")
+							return res.send("Registrado") 
 						}
 					}
 				})
