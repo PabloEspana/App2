@@ -53,32 +53,32 @@ router.get('/persona/:id', (req, res) => {
 router.delete('/persona/:id', (req, res) => {
     prueba.deleteOne({ identificador : req.params.id }, (err, eliminado) => { // Sentencia para consultar
         if (err) { // Si hay error
-			res.send("Error al eliminar")
+			return res.send("Error al eliminar")
         } else {
             if (!eliminado) { // Si no se encientran estudiantes se muestra un mensaje en consola
-				res.send("No existe")
+				return res.send("No existe")
             } else {
                 // Si encuentra alumnos los envía a las vistas html para mostrarlos en tablas
-				res.send("Eliminado")
+				return res.send("Eliminado")
             }
         }
     })
 })
 
-/*router.post('/personas', (req, res) => {
-    prueba.findById({ identificador : req.params.id }, (err, datos) => { // Sentencia para consultar
-        if (err) { // Si hay error
-            console.log(err)
+
+router.post('/personas', (req, res) => {
+    prueba.findOne({ identificador : req.body.identificador }, (err, datos) => { // Sentencia para consultar
+        if (err) {
+			return res.send("Error al comprobar")
         } else {
-            if (!datos) { // Si no se encientran estudiantes se muestra un mensaje en consola
-                console.log("No hay datos")
+            if (datos) {
+				return res.send("Ya existe un registro con este identificador")
             } else {
-                // Si encuentra alumnos los envía a las vistas html para mostrarlos en tablas
-                res.send(datos)
+                return res.send("Registrado")
             }
         }
     })
-})*/
+})
 
 
 router.get('/login',  (req, res) => {
