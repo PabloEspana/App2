@@ -50,6 +50,21 @@ router.get('/persona/:id', (req, res) => {
     })
 })
 
+router.delete('/persona/:id', (req, res) => {
+    prueba.deleteOne({ identificador : req.params.id }, (err, eliminado) => { // Sentencia para consultar
+        if (err) { // Si hay error
+			res.send("Error al eliminar")
+        } else {
+            if (!eliminado) { // Si no se encientran estudiantes se muestra un mensaje en consola
+				res.send("No existe")
+            } else {
+                // Si encuentra alumnos los envía a las vistas html para mostrarlos en tablas
+				res.send("Eliminado")
+            }
+        }
+    })
+})
+
 /*router.post('/personas', (req, res) => {
     prueba.findById({ identificador : req.params.id }, (err, datos) => { // Sentencia para consultar
         if (err) { // Si hay error
