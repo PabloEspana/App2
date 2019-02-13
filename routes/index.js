@@ -72,7 +72,7 @@ router.post('/personas', (req, res) => {
 					campo1: req.body.campo1 ,
 					campo2: req.body.campo2 , 
 					campo3: req.body.campo3, 
-					foto; req.body.foto
+					foto: req.body.foto
 				};
 
     prueba.findOne({ identificador : req.body.identificador }, (err, datos) => { // Sentencia para consultar
