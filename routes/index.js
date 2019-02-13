@@ -36,7 +36,7 @@ router.get('/personas', (req, res) => {
 })
 
 router.get('/persona/:id', (req, res) => {
-    prueba.findById({ identificador : req.params.id }, (err, datos) => { // Sentencia para consultar
+    prueba.findOne({ identificador : req.params.id }, (err, datos) => { // Sentencia para consultar
         if (err) { // Si hay error
             console.log(err)
         } else {
