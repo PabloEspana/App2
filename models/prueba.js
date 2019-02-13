@@ -3,7 +3,7 @@ bcrypt = require('bcryptjs')
 Schema = mongoose.Schema
 
 PruebaSchema = Schema({
-	codigo: {tyoe: String},
+	codigo_user: {tyoe: String},
     nombre: { type: String },
     campo1: { type: String },
     campo2: { type: String },
