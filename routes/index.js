@@ -83,7 +83,7 @@ router.post('/personas', (req, res) => {
             if (resultado) {
 				return res.send("Ya existe un registro con este identificador")
             } else {
-				prueba.create(contenido, (err, result) => {
+				prueba.create(req.body, (err, result) => {
 					if (err) {
 						return res.send("Error")
 					}else{
